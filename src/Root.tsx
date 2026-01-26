@@ -1,17 +1,18 @@
 import "./index.css";
 import { Composition } from "remotion";
-import { MyComposition } from "./Composition";
+import { Video } from "./Video";
+import { TIMING, DIMENSIONS } from "./config/theme";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="MyComp"
-        component={MyComposition}
-        durationInFrames={60}
-        fps={30}
-        width={1280}
-        height={720}
+        id="GatorPromo"
+        component={Video}
+        durationInFrames={TIMING.totalDuration}
+        fps={TIMING.fps}
+        width={DIMENSIONS.width}
+        height={DIMENSIONS.height}
       />
     </>
   );

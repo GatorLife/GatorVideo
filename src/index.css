@@ -1,1 +1,86 @@
 @import "tailwindcss";
+
+:root {
+  /* Primary brand colors (from gator-green palette) */
+  --color-primary: #07D96A;
+  --color-primary-light: #2CF28D;
+  --color-primary-dark: #038C44;
+  --color-primary-deep: #0B5B32;
+
+  /* Semantic colors */
+  --color-success: #07D96A;
+  --color-warning: #FF8C00;
+  --color-error: #7F1D1D;
+  --color-info: #3B82F6;
+
+  /* Chart colors */
+  --color-chart-1: #07D96A;
+  --color-chart-2: #84CC16;
+  --color-chart-3: #F97316;
+  --color-chart-4: #3B82F6;
+  --color-chart-5: #EC4899;
+
+  /* Role colors */
+  --color-role-admin: #A855F7;
+  --color-role-student: #3B82F6;
+  --color-role-instructor: #07D96A;
+  --color-role-super: #EF4444;
+
+  /* Neutrals */
+  --color-white: #FAFAFA;
+  --color-black: #000000;
+  --color-dark-bg: #0A0A0A;
+  --color-secondary: #272729;
+  --color-muted: #71717A;
+  --color-gray-text: #A1A1AA;
+  --color-border: #27272A;
+
+  /* Legacy aliases */
+  --color-deep-green: #0B5B32;
+  --color-accent-green: #07D96A;
+  --color-matrix-green: #2CF28D;
+  --color-warning-red: #EF4444;
+  --color-success-green: #07D96A;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Spacing & Radius */
+  --radius: 0.75rem;
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-dark-bg);
+  font-family: var(--font-sans);
+}
+
+/* Gator utility classes */
+.gator-glow {
+  text-shadow: 0 0 10px var(--color-primary),
+               0 0 20px var(--color-primary),
+               0 0 30px var(--color-primary);
+}
+
+.gator-card {
+  background: var(--color-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.gator-card-hover {
+  transition: border-color 0.2s ease;
+}
+
+.gator-card-hover:hover {
+  border-color: var(--color-primary);
+}
