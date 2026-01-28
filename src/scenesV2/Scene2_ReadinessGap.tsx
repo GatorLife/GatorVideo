@@ -69,6 +69,7 @@ export const Scene2_ReadinessGap: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
           padding: 60,
           opacity: sceneOpacity,
         }}
@@ -93,11 +94,10 @@ export const Scene2_ReadinessGap: React.FC = () => {
         {frame >= gapsStartFrame && (
           <div
             style={{
-              flex: 1,
               display: "flex",
               gap: 50,
               justifyContent: "center",
-              alignItems: "center",
+              alignItems: "stretch",
             }}
           >
             {gaps.map((gap, index) => {
@@ -119,8 +119,8 @@ export const Scene2_ReadinessGap: React.FC = () => {
                 <div
                   key={index}
                   style={{
-                    width: 400,
-                    padding: 40,
+                    width: 480,
+                    padding: 48,
                     backgroundColor: `rgba(0, 0, 0, 0.85)`,
                     border: `2px solid ${COLORS.warningRed}60`,
                     borderRadius: 16,
@@ -133,9 +133,9 @@ export const Scene2_ReadinessGap: React.FC = () => {
                   <div
                     style={{
                       ...fontStyles.heading,
-                      fontSize: 22,
+                      fontSize: 28,
                       color: COLORS.warningRed,
-                      marginBottom: 16,
+                      marginBottom: 20,
                     }}
                   >
                     GAP {index + 1}
@@ -145,10 +145,10 @@ export const Scene2_ReadinessGap: React.FC = () => {
                   <h3
                     style={{
                       ...fontStyles.subheading,
-                      fontSize: 28,
+                      fontSize: 36,
                       color: COLORS.white,
                       margin: 0,
-                      marginBottom: 16,
+                      marginBottom: 20,
                     }}
                   >
                     {gap.name}
@@ -158,7 +158,7 @@ export const Scene2_ReadinessGap: React.FC = () => {
                   <p
                     style={{
                       ...fontStyles.body,
-                      fontSize: 20,
+                      fontSize: 26,
                       color: COLORS.grayText,
                       margin: 0,
                       lineHeight: 1.5,

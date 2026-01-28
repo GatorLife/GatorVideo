@@ -80,17 +80,17 @@ export const MESSAGING_V2 = {
         "JQR/JCT&CS Alignment",
         "Dynamic Complexity",
       ],
-      description: "Adaptive ranges that evolve with the threat landscape",
+      description: "Adaptive ranges that evolve\nwith the threat landscape",
     },
     pillar2: {
       title: "AI Evaluator",
       features: ["Zero Bias", "100% Precision", "Instant Assessment"],
-      description: "Same standard for every operator, every time",
+      description: "Same standard for every operator,\nevery time",
     },
     pillar3: {
       title: "Reporting & Insights",
       features: ["Role-Based Truth", "JQR Compliant", "Predictive Analysis"],
-      description: "Commander to operator - everyone sees their truth",
+      description: "Commander to operator,\neveryone sees their truth",
     },
   },
 

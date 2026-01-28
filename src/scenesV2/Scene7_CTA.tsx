@@ -158,7 +158,7 @@ const CTAContent: React.FC = () => {
       </div>
 
       {/* Website URL */}
-      <div style={{ opacity: urlOpacity, marginBottom: 20 }}>
+      <div style={{ opacity: urlOpacity, marginBottom: 50 }}>
         <span
           style={{
             ...fontStyles.mono,
@@ -175,7 +175,7 @@ const CTAContent: React.FC = () => {
       <div
         style={{
           opacity: pilotOpacity,
-          marginBottom: 30,
+          marginBottom: 50,
         }}
       >
         <div

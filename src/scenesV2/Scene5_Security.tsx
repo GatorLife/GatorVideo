@@ -90,7 +90,6 @@ export const Scene5_Security: React.FC = () => {
             marginBottom: 20,
             opacity: titleOpacity,
             transform: `scale(${titleScale})`,
-            filter: `drop-shadow(0 0 ${20 * glowPulse}px ${COLORS.accentGreen})`,
           }}
         >
           🏛️

@@ -203,6 +203,7 @@ export const Pillar1_Environment: React.FC = () => {
             opacity: descOpacity,
             borderLeft: `3px solid ${COLORS.accentGreen}40`,
             paddingLeft: 20,
+            whiteSpace: "pre-line",
           }}
         >
           {description}

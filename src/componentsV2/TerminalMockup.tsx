@@ -61,8 +61,6 @@ const GATOR_ASCII_ART = `                            .-.
 ==========================================
         GATOR Evaluation Environment
 ==========================================
-
-Type help for available commands
 `;
 
 export const TerminalMockup: React.FC<TerminalMockupProps> = ({
