@@ -55,13 +55,6 @@ export const MetricDisplay: React.FC<MetricDisplayProps> = ({
     extrapolateRight: "clamp",
   });
 
-  // Glow effect
-  const glowIntensity = interpolate(
-    Math.sin(relativeFrame * 0.08),
-    [-1, 1],
-    [0.6, 1]
-  );
-
   const statusColor = STATUS_COLORS[status];
 
   return (
@@ -80,11 +73,6 @@ export const MetricDisplay: React.FC<MetricDisplayProps> = ({
           ...fontStyles.heading,
           fontSize: 72,
           color: statusColor,
-          textShadow: `
-            0 0 ${10 * glowIntensity}px ${statusColor},
-            0 0 ${20 * glowIntensity}px ${statusColor},
-            0 0 ${40 * glowIntensity}px ${statusColor}
-          `,
         }}
       >
         {displayValue}
@@ -112,7 +100,6 @@ export const MetricDisplay: React.FC<MetricDisplayProps> = ({
           borderRadius: "50%",
           backgroundColor: statusColor,
           marginTop: 12,
-          boxShadow: `0 0 ${15 * glowIntensity}px ${statusColor}`,
         }}
       />
     </div>

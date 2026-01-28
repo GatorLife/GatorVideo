@@ -14,6 +14,8 @@ interface TerminalMockupProps {
   title?: string;
   width?: number;
   startFrame?: number;
+  variant?: "default" | "gator";
+  showAsciiHeader?: boolean;
 }
 
 const TYPE_COLORS = {
@@ -23,6 +25,14 @@ const TYPE_COLORS = {
   info: COLORS.info,
 };
 
+// GATOR terminal uses monochrome green
+const GATOR_TYPE_COLORS = {
+  input: COLORS.accentGreen,
+  output: COLORS.accentGreen,
+  success: COLORS.accentGreen,
+  info: COLORS.accentGreen,
+};
+
 const TYPE_PREFIXES = {
   input: "$ ",
   output: "  ",
@@ -30,14 +40,43 @@ const TYPE_PREFIXES = {
   info: "ℹ ",
 };
 
+const GATOR_TYPE_PREFIXES = {
+  input: "gatorterm:~$ ",
+  output: "",
+  success: "",
+  info: "",
+};
+
+const GATOR_ASCII_ART = `      .-''-._.-'00   '-' ' ' ' ' ' '-._
+    '-._.--'._     '.__  '-' '-' '-'
+      V:  V  'vv-'    '-._.-._.-'._.-'
+       '=.____=_.-'   :_._._ :_.  ': . :
+           (googol) /        \\   :  :  :
+                   ((____))  /\\ / :.'
+                  /((____)).'  '
+                     '.__   _.'      (_)
+
+==========================================
+        GATOR Evaluation Environment
+==========================================
+
+Type help for available commands
+`;
+
 export const TerminalMockup: React.FC<TerminalMockupProps> = ({
   lines,
   title = "AI Evaluator",
   width = 600,
   startFrame = 0,
+  variant = "default",
+  showAsciiHeader = false,
 }) => {
   const frame = useCurrentFrame();
   const relativeFrame = frame - startFrame;
+
+  const isGator = variant === "gator";
+  const colors = isGator ? GATOR_TYPE_COLORS : TYPE_COLORS;
+  const prefixes = isGator ? GATOR_TYPE_PREFIXES : TYPE_PREFIXES;
 
   // Terminal entrance
   const terminalOpacity = interpolate(relativeFrame, [0, 20], [0, 1], {
@@ -46,6 +85,12 @@ export const TerminalMockup: React.FC<TerminalMockupProps> = ({
   });
 
   const terminalScale = interpolate(relativeFrame, [0, 20], [0.95, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // ASCII header fade in (for gator variant)
+  const asciiOpacity = interpolate(relativeFrame, [0, 15], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -65,6 +110,106 @@ export const TerminalMockup: React.FC<TerminalMockupProps> = ({
     }
   }
 
+  // GATOR variant - flat dark terminal
+  if (isGator) {
+    return (
+      <div
+        style={{
+          width,
+          backgroundColor: "#1a1a1a",
+          borderRadius: 4,
+          overflow: "hidden",
+          opacity: terminalOpacity,
+          transform: `scale(${terminalScale})`,
+          border: `1px solid ${COLORS.accentGreen}30`,
+        }}
+      >
+        {/* Terminal content */}
+        <div
+          style={{
+            padding: 16,
+            minHeight: 200,
+          }}
+        >
+          {/* ASCII Header */}
+          {showAsciiHeader && (
+            <pre
+              style={{
+                ...fontStyles.mono,
+                fontSize: 10,
+                lineHeight: 1.2,
+                color: COLORS.accentGreen,
+                margin: 0,
+                marginBottom: 16,
+                opacity: asciiOpacity,
+                whiteSpace: "pre",
+              }}
+            >
+              {GATOR_ASCII_ART}
+            </pre>
+          )}
+
+          {/* Terminal lines */}
+          {lines.map((line, index) => {
+            const lineOpacity = interpolate(
+              relativeFrame - line.delay,
+              [0, 10],
+              [0, 1],
+              { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+            );
+
+            // Typing animation for input lines
+            let displayText = line.text;
+            if (line.type === "input" && relativeFrame < line.delay + 30) {
+              const charCount = Math.floor(
+                ((relativeFrame - line.delay) / 30) * line.text.length
+              );
+              displayText = line.text.slice(0, Math.max(0, charCount));
+            }
+
+            const showCursor =
+              currentTypingLine === index &&
+              line.type === "input" &&
+              cursorVisible;
+
+            return (
+              <div
+                key={index}
+                style={{
+                  ...fontStyles.mono,
+                  fontSize: 13,
+                  lineHeight: 1.6,
+                  color: colors[line.type],
+                  opacity: lineOpacity,
+                  display: "flex",
+                }}
+              >
+                {prefixes[line.type] && (
+                  <span style={{ color: colors[line.type], opacity: 0.8 }}>
+                    {prefixes[line.type]}
+                  </span>
+                )}
+                <span>{displayText}</span>
+                {showCursor && (
+                  <span
+                    style={{
+                      backgroundColor: COLORS.accentGreen,
+                      width: 8,
+                      height: 16,
+                      display: "inline-block",
+                      marginLeft: 2,
+                    }}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // Default variant - macOS styled terminal
   return (
     <div
       style={{
@@ -165,13 +310,13 @@ export const TerminalMockup: React.FC<TerminalMockupProps> = ({
                 ...fontStyles.mono,
                 fontSize: 16,
                 lineHeight: 1.8,
-                color: TYPE_COLORS[line.type],
+                color: colors[line.type],
                 opacity: lineOpacity,
                 display: "flex",
               }}
             >
-              <span style={{ color: TYPE_COLORS[line.type], opacity: 0.7 }}>
-                {TYPE_PREFIXES[line.type]}
+              <span style={{ color: colors[line.type], opacity: 0.7 }}>
+                {prefixes[line.type]}
               </span>
               <span>{displayText}</span>
               {showCursor && (

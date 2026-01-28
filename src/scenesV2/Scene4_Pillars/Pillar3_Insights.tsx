@@ -65,10 +65,10 @@ export const Pillar3_Insights: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          left: 80,
+          left: 300,
           top: "50%",
           transform: "translateY(-50%)",
-          width: 480,
+          width: 560,
         }}
       >
         {/* Pillar badge */}
@@ -77,21 +77,21 @@ export const Pillar3_Insights: React.FC = () => {
             display: "flex",
             alignItems: "center",
             gap: 16,
-            marginBottom: 24,
+            marginBottom: 20,
             transform: `scale(${badgeScale})`,
           }}
         >
           <div
             style={{
-              width: 50,
-              height: 50,
+              width: 56,
+              height: 56,
               borderRadius: "50%",
               backgroundColor: COLORS.accentGreen,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               ...fontStyles.heading,
-              fontSize: 24,
+              fontSize: 28,
               color: COLORS.black,
               boxShadow: `0 0 ${20 * glowPulse}px ${COLORS.accentGreen}`,
             }}
@@ -101,7 +101,7 @@ export const Pillar3_Insights: React.FC = () => {
           <span
             style={{
               ...fontStyles.mono,
-              fontSize: 16,
+              fontSize: 24,
               color: COLORS.accentGreen,
               textTransform: "uppercase",
               letterSpacing: 3,
@@ -115,10 +115,10 @@ export const Pillar3_Insights: React.FC = () => {
         <h2
           style={{
             ...fontStyles.heading,
-            fontSize: 48,
+            fontSize: 64,
             color: COLORS.white,
             margin: 0,
-            marginBottom: 32,
+            marginBottom: 28,
             opacity: titleOpacity,
             transform: `translateY(${titleY}px)`,
           }}
@@ -127,7 +127,7 @@ export const Pillar3_Insights: React.FC = () => {
         </h2>
 
         {/* Features */}
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 28 }}>
           {features.map((feature, index) => {
             const delay = index * 20;
             const featureOpacity = interpolate(
@@ -158,8 +158,8 @@ export const Pillar3_Insights: React.FC = () => {
               >
                 <div
                   style={{
-                    width: 12,
-                    height: 12,
+                    width: 16,
+                    height: 16,
                     borderRadius: "50%",
                     backgroundColor: COLORS.accentGreen,
                     boxShadow: `0 0 10px ${COLORS.accentGreen}`,
@@ -168,7 +168,7 @@ export const Pillar3_Insights: React.FC = () => {
                 <span
                   style={{
                     ...fontStyles.subheading,
-                    fontSize: 26,
+                    fontSize: 36,
                     color: COLORS.white,
                   }}
                 >
@@ -183,7 +183,7 @@ export const Pillar3_Insights: React.FC = () => {
         <p
           style={{
             ...fontStyles.body,
-            fontSize: 20,
+            fontSize: 26,
             color: COLORS.grayText,
             margin: 0,
             lineHeight: 1.6,
@@ -200,13 +200,13 @@ export const Pillar3_Insights: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          right: 80,
+          right: 340,
           top: "50%",
           transform: "translateY(-50%)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 30,
+          gap: 20,
         }}
       >
         {/* Main gauge */}
@@ -223,50 +223,25 @@ export const Pillar3_Insights: React.FC = () => {
           style={{
             display: "flex",
             gap: 60,
-            marginTop: 20,
+            marginTop: 16,
           }}
         >
           <MetricDisplay
             value="92%"
-            label="Network Defense"
+            label="Net Analyst"
             status="green"
             startFrame={metricsStartFrame}
             countUp
           />
           <MetricDisplay
             value="65%"
-            label="Offensive Ops"
+            label="Host Analyst"
             status="yellow"
             startFrame={metricsStartFrame + 15}
             countUp
           />
         </div>
 
-        {/* GAO badge */}
-        <div
-          style={{
-            marginTop: 20,
-            padding: "10px 24px",
-            backgroundColor: `${COLORS.accentGreen}15`,
-            border: `1px solid ${COLORS.accentGreen}40`,
-            borderRadius: 8,
-            opacity: interpolate(frame, [120, 140], [0, 1], {
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            }),
-          }}
-        >
-          <span
-            style={{
-              ...fontStyles.mono,
-              fontSize: 14,
-              color: COLORS.accentGreen,
-              letterSpacing: 2,
-            }}
-          >
-            GAO COMPLIANT
-          </span>
-        </div>
       </div>
 
       {/* Corner accents */}

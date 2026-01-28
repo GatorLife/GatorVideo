@@ -11,9 +11,8 @@ import {
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
 import { fontStyles } from "../config/fonts";
-import { SplitCompare } from "../componentsV2/SplitCompare";
 
-const { title, gaps, compare } = MESSAGING_V2.readinessGap;
+const { title, gaps } = MESSAGING_V2.readinessGap;
 
 export const Scene2_ReadinessGap: React.FC = () => {
   const frame = useCurrentFrame();
@@ -32,7 +31,6 @@ export const Scene2_ReadinessGap: React.FC = () => {
 
   // Gaps section timing
   const gapsStartFrame = 40;
-  const compareStartFrame = 140;
 
   // Scene fade out
   const sceneOpacity = interpolate(
@@ -45,7 +43,7 @@ export const Scene2_ReadinessGap: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
       {/* Background video - subtle */}
-      <AbsoluteFill style={{ opacity: 0.15 }}>
+      <AbsoluteFill style={{ opacity: 0.7 }}>
         <OffthreadVideo
           src={staticFile("Gator_Video_EmergencyOpsCenter.mp4")}
           style={{
@@ -92,13 +90,14 @@ export const Scene2_ReadinessGap: React.FC = () => {
         </h1>
 
         {/* The Three Gaps */}
-        {frame >= gapsStartFrame && frame < compareStartFrame && (
+        {frame >= gapsStartFrame && (
           <div
             style={{
+              flex: 1,
               display: "flex",
-              gap: 40,
+              gap: 50,
               justifyContent: "center",
-              marginTop: 20,
+              alignItems: "center",
             }}
           >
             {gaps.map((gap, index) => {
@@ -120,22 +119,23 @@ export const Scene2_ReadinessGap: React.FC = () => {
                 <div
                   key={index}
                   style={{
-                    width: 320,
-                    padding: 30,
-                    backgroundColor: `${COLORS.warningRed}10`,
-                    border: `1px solid ${COLORS.warningRed}40`,
-                    borderRadius: 12,
+                    width: 400,
+                    padding: 40,
+                    backgroundColor: `rgba(0, 0, 0, 0.85)`,
+                    border: `2px solid ${COLORS.warningRed}60`,
+                    borderRadius: 16,
                     opacity: gapOpacity,
                     transform: `scale(${gapScale})`,
+                    boxShadow: `0 4px 20px rgba(0, 0, 0, 0.5)`,
                   }}
                 >
                   {/* Gap number */}
                   <div
                     style={{
                       ...fontStyles.heading,
-                      fontSize: 18,
+                      fontSize: 22,
                       color: COLORS.warningRed,
-                      marginBottom: 12,
+                      marginBottom: 16,
                     }}
                   >
                     GAP {index + 1}
@@ -145,10 +145,10 @@ export const Scene2_ReadinessGap: React.FC = () => {
                   <h3
                     style={{
                       ...fontStyles.subheading,
-                      fontSize: 22,
+                      fontSize: 28,
                       color: COLORS.white,
                       margin: 0,
-                      marginBottom: 12,
+                      marginBottom: 16,
                     }}
                   >
                     {gap.name}
@@ -158,7 +158,7 @@ export const Scene2_ReadinessGap: React.FC = () => {
                   <p
                     style={{
                       ...fontStyles.body,
-                      fontSize: 16,
+                      fontSize: 20,
                       color: COLORS.grayText,
                       margin: 0,
                       lineHeight: 1.5,
@@ -169,64 +169,6 @@ export const Scene2_ReadinessGap: React.FC = () => {
                 </div>
               );
             })}
-          </div>
-        )}
-
-        {/* Split comparison */}
-        {frame >= compareStartFrame && (
-          <div
-            style={{
-              flex: 1,
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <SplitCompare
-              left={{
-                title: compare.traditional.title,
-                items: compare.traditional.items,
-                color: COLORS.warningRed,
-              }}
-              right={{
-                title: compare.verifiable.title,
-                items: compare.verifiable.items,
-                color: COLORS.accentGreen,
-              }}
-              startFrame={compareStartFrame}
-            />
-          </div>
-        )}
-
-        {/* Key question at bottom */}
-        {frame >= compareStartFrame + 80 && (
-          <div
-            style={{
-              position: "absolute",
-              bottom: 60,
-              left: 0,
-              right: 0,
-              textAlign: "center",
-              opacity: interpolate(
-                frame,
-                [compareStartFrame + 80, compareStartFrame + 100],
-                [0, 1],
-                { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-              ),
-            }}
-          >
-            <p
-              style={{
-                ...fontStyles.body,
-                fontSize: 24,
-                color: COLORS.grayText,
-                fontStyle: "italic",
-              }}
-            >
-              "If we had to mobilize a cyber team tomorrow, how do we prove we
-              are ready?"
-            </p>
           </div>
         )}
       </div>

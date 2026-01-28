@@ -89,7 +89,7 @@ export const MESSAGING_V2 = {
     },
     pillar3: {
       title: "Reporting & Insights",
-      features: ["Role-Based Truth", "GAO Compliant", "Predictive Analysis"],
+      features: ["Role-Based Truth", "JQR Compliant", "Predictive Analysis"],
       description: "Commander to operator - everyone sees their truth",
     },
   },
