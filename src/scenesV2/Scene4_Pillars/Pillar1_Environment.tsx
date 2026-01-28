@@ -61,14 +61,14 @@ export const Pillar1_Environment: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          left: 340,
+          left: 230,
           top: "50%",
           transform: "translateY(-50%)",
         }}
       >
         <NetworkGraph
-          width={450}
-          height={380}
+          width={750}
+          height={600}
           nodeCount={15}
           startFrame={30}
         />

@@ -55,8 +55,8 @@ export const SecurityBadge: React.FC<SecurityBadgeProps> = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: 16,
-        padding: 24,
+        gap: 24,
+        padding: 36,
         opacity,
         transform: `scale(${scale})`,
       }}
@@ -64,28 +64,29 @@ export const SecurityBadge: React.FC<SecurityBadgeProps> = ({
       {/* Icon container */}
       <div
         style={{
-          width: 80,
-          height: 80,
-          borderRadius: 16,
+          width: 120,
+          height: 120,
+          borderRadius: 24,
           backgroundColor: `${COLORS.accentGreen}15`,
-          border: `2px solid ${COLORS.accentGreen}40`,
+          border: `3px solid ${COLORS.accentGreen}40`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: `0 0 ${20 * glowPulse}px ${COLORS.accentGreen}30`,
+          boxShadow: `0 0 ${25 * glowPulse}px ${COLORS.accentGreen}30`,
         }}
       >
-        <span style={{ fontSize: 36 }}>{ICONS[icon]}</span>
+        <span style={{ fontSize: 54 }}>{ICONS[icon]}</span>
       </div>
 
       {/* Label */}
       <span
         style={{
           ...fontStyles.subheading,
-          fontSize: 18,
+          fontSize: 27,
           color: COLORS.white,
           textAlign: "center",
-          maxWidth: 140,
+          maxWidth: 210,
+          whiteSpace: "pre-line",
         }}
       >
         {label}
@@ -94,20 +95,20 @@ export const SecurityBadge: React.FC<SecurityBadgeProps> = ({
       {/* Checkmark */}
       <div
         style={{
-          width: 24,
-          height: 24,
+          width: 36,
+          height: 36,
           borderRadius: "50%",
           backgroundColor: COLORS.accentGreen,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: `0 0 10px ${COLORS.accentGreen}`,
+          boxShadow: `0 0 15px ${COLORS.accentGreen}`,
         }}
       >
         <span
           style={{
             color: COLORS.black,
-            fontSize: 14,
+            fontSize: 21,
             fontWeight: "bold",
           }}
         >

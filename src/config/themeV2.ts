@@ -5,7 +5,7 @@ export { COLORS, TYPOGRAPHY, DIMENSIONS } from "./theme";
 
 export const TIMING_V2 = {
   fps: 30,
-  totalDuration: 1950, // ~65 seconds
+  totalDuration: 2010, // ~67 seconds
 
   // Scene durations in frames (30fps = 30 frames per second)
   scene1_hook: 180, // 6 seconds - Matrix intro with NDAA reference
@@ -13,7 +13,7 @@ export const TIMING_V2 = {
   scene3_thesis: 150, // 5 seconds - "I Think" to "I Know" + logo
   scene4_pillars: 720, // 24 seconds - Three pillars (8s each)
   scene5_security: 180, // 6 seconds - Trust signals
-  scene6_resolution: 240, // 8 seconds - Testimonial + metrics
+  scene6_resolution: 300, // 10 seconds - Testimonial + metrics
   scene7_cta: 240, // 8 seconds - Updated CTA with pilot mention
 
   // Pillar sub-timing (within Scene 4)
@@ -100,7 +100,7 @@ export const MESSAGING_V2 = {
     badges: [
       { label: "SIPR/JWICS Ready", icon: "shield" },
       { label: "On-Premise LLMs", icon: "server" },
-      { label: "Zero PII Retention", icon: "lock" },
+      { label: "NIST\nCompliant", icon: "lock" },
       { label: "JCC2-R Integration", icon: "network" },
     ],
     subtitle: "Data Sovereignty & Mission Assurance",
@@ -115,17 +115,17 @@ export const MESSAGING_V2 = {
       role: "Cyber Operations",
     },
     metrics: [
-      { label: "Accuracy", value: "99.8%", status: "green" },
-      { label: "Network Defense", value: "92%", status: "green" },
-      { label: "Response Time", value: "0.2s", status: "green" },
+      { label: "Work Roles", value: "54", status: "green" },
+      { label: "Environment Generation", value: "10s", status: "green" },
+      { label: "Scenarios", value: "∞", status: "green" },
     ],
     status: "FULLY MISSION CAPABLE",
   },
 
   // Scene 7 - CTA
   cta: {
-    lines: ["Prove", "Mission", "Readiness."],
-    pilot: "60-90 Day Pilot",
+    lines: ["Readiness", "Guaranteed."],
+    pilot: "30 Day Pilot Ready",
     tagline: "Let's move from range time to readiness.",
     url: "GoGATOR.ai",
     contact: "Cole@GoGATOR.ai",

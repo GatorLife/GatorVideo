@@ -10,7 +10,6 @@ import {
   Sequence,
   AbsoluteFill,
 } from "remotion";
-import { GlowText } from "../components/GlowText";
 import { GridPattern } from "../components/GridPattern";
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
@@ -121,15 +120,15 @@ const CTAContent: React.FC = () => {
                 transform: `translateY(${yOffset}px)`,
               }}
             >
-              <GlowText
-                fontSize={72}
-                color={COLORS.white}
-                glowColor={COLORS.accentGreen}
-                glowIntensity={finalGlow}
-                fontStyle="heading"
+              <span
+                style={{
+                  ...fontStyles.heading,
+                  fontSize: 72,
+                  color: COLORS.white,
+                }}
               >
                 {line}
-              </GlowText>
+              </span>
             </div>
           );
         })}
@@ -142,6 +141,9 @@ const CTAContent: React.FC = () => {
           transform: `scale(${Math.max(0, logoScale)})`,
           marginBottom: 30,
           filter: `drop-shadow(0 0 ${15 * finalGlow}px ${COLORS.accentGreen})`,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Img
@@ -150,6 +152,7 @@ const CTAContent: React.FC = () => {
             width: 240,
             height: "auto",
             objectFit: "contain",
+            display: "block",
           }}
         />
       </div>
@@ -199,6 +202,8 @@ const CTAContent: React.FC = () => {
       {/* Tagline */}
       <div
         style={{
+          position: "absolute",
+          bottom: 120,
           opacity: urlOpacity,
         }}
       >

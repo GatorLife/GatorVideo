@@ -10,7 +10,6 @@ import {
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
 import { fontStyles } from "../config/fonts";
-import { GlowText } from "../components/GlowText";
 
 const { transition, subtitle, tagline } = MESSAGING_V2.thesis;
 
@@ -98,15 +97,15 @@ export const Scene3_Thesis: React.FC = () => {
           marginBottom: 50,
         }}
       >
-        <GlowText
-          fontSize={64}
-          color={COLORS.white}
-          glowColor={COLORS.accentGreen}
-          glowIntensity={glowIntensity}
-          fontStyle="heading"
+        <span
+          style={{
+            ...fontStyles.heading,
+            fontSize: 64,
+            color: COLORS.white,
+          }}
         >
           {transition}
-        </GlowText>
+        </span>
       </div>
 
       {/* Logo */}

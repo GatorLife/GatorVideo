@@ -31,27 +31,30 @@ export const NetworkGraph: React.FC<NetworkGraphProps> = ({
   const frame = useCurrentFrame();
   const relativeFrame = frame - startFrame;
 
+  // Scale factor based on dimensions (relative to default 500x400)
+  const scale = Math.min(width / 500, height / 400);
+
   // Generate deterministic nodes
   const nodes: Node[] = React.useMemo(() => {
     return Array.from({ length: nodeCount }, (_, i) => {
       const seed = `node-${i}`;
       const angle = (i / nodeCount) * Math.PI * 2 + random(seed) * 0.5;
-      const radius = 120 + random(seed + "-r") * 60;
+      const radius = (120 + random(seed + "-r") * 60) * scale;
 
       return {
         x: width / 2 + Math.cos(angle) * radius,
         y: height / 2 + Math.sin(angle) * radius,
-        size: 8 + random(seed + "-s") * 8,
+        size: (8 + random(seed + "-s") * 8) * scale,
         delay: i * 5,
       };
     });
-  }, [nodeCount, width, height]);
+  }, [nodeCount, width, height, scale]);
 
   // Add center node
   const centerNode: Node = {
     x: width / 2,
     y: height / 2,
-    size: 20,
+    size: 20 * scale,
     delay: 0,
   };
 
@@ -105,7 +108,7 @@ export const NetworkGraph: React.FC<NetworkGraphProps> = ({
         </filter>
       </defs>
 
-      <circle cx={width / 2} cy={height / 2} r={180} fill="url(#centerGlow)" />
+      <circle cx={width / 2} cy={height / 2} r={180 * scale} fill="url(#centerGlow)" />
 
       {/* Edges */}
       {edges.map((edge, i) => {
@@ -135,7 +138,7 @@ export const NetworkGraph: React.FC<NetworkGraphProps> = ({
               x2={toNode.x}
               y2={toNode.y}
               stroke={COLORS.accentGreen}
-              strokeWidth={1.5}
+              strokeWidth={1.5 * scale}
               opacity={edgeOpacity}
               filter="url(#glow)"
             />
@@ -144,7 +147,7 @@ export const NetworkGraph: React.FC<NetworkGraphProps> = ({
               <circle
                 cx={packetX}
                 cy={packetY}
-                r={3}
+                r={3 * scale}
                 fill={COLORS.white}
                 opacity={0.8}
               />

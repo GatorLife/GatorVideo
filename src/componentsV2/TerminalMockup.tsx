@@ -16,6 +16,7 @@ interface TerminalMockupProps {
   startFrame?: number;
   variant?: "default" | "gator";
   showAsciiHeader?: boolean;
+  showWindowFrame?: boolean;
 }
 
 const TYPE_COLORS = {
@@ -47,14 +48,15 @@ const GATOR_TYPE_PREFIXES = {
   info: "",
 };
 
-const GATOR_ASCII_ART = `      .-''-._.-'00   '-' ' ' ' ' ' '-._
-    '-._.--'._     '.__  '-' '-' '-'
-      V:  V  'vv-'    '-._.-._.-'._.-'
-       '=.____=_.-'   :_._._ :_.  ': . :
-           (googol) /        \\   :  :  :
-                   ((____))  /\\ / :.'
-                  /((____)).'  '
-                     '.__   _.'      (_)
+const GATOR_ASCII_ART = `                            .-.
+     .-' ' '.__.-'00   '-_' ' ' _ _ _ _ _ _ _-.
+   '.__.--'._       '.-'_'_' '_' '-_' '-_' '-'
+      V:  V  'vv-'   '_     '.       .'  __.  ' .'_
+        '=.____=_.-'   :_.__._:_  '.    :  :
+             (((____.-'           '-.   /     :  :
+                                  (((-'\\ .' /
+                                  ____.'  '
+                                 '-.____.–'
 
 ==========================================
         GATOR Evaluation Environment
@@ -70,6 +72,7 @@ export const TerminalMockup: React.FC<TerminalMockupProps> = ({
   startFrame = 0,
   variant = "default",
   showAsciiHeader = false,
+  showWindowFrame = false,
 }) => {
   const frame = useCurrentFrame();
   const relativeFrame = frame - startFrame;
@@ -117,13 +120,114 @@ export const TerminalMockup: React.FC<TerminalMockupProps> = ({
         style={{
           width,
           backgroundColor: "#1a1a1a",
-          borderRadius: 4,
+          borderRadius: showWindowFrame ? 8 : 4,
           overflow: "hidden",
           opacity: terminalOpacity,
           transform: `scale(${terminalScale})`,
           border: `1px solid ${COLORS.accentGreen}30`,
         }}
       >
+        {/* Window frame title bar */}
+        {showWindowFrame && (
+          <>
+            <div
+              style={{
+                backgroundColor: "#0d0d0d",
+                padding: "10px 14px",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              {/* Traffic lights */}
+              <div style={{ display: "flex", gap: 6 }}>
+                <div
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: "50%",
+                    backgroundColor: "#ff5f56",
+                  }}
+                />
+                <div
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: "50%",
+                    backgroundColor: "#ffbd2e",
+                  }}
+                />
+                <div
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: "50%",
+                    backgroundColor: "#27ca40",
+                  }}
+                />
+              </div>
+
+              {/* Title */}
+              <span
+                style={{
+                  ...fontStyles.mono,
+                  fontSize: 13,
+                  color: COLORS.accentGreen,
+                  marginLeft: 10,
+                  opacity: 0.8,
+                }}
+              >
+                {title === "AI Evaluator" ? "GATOR Terminal" : title}
+              </span>
+            </div>
+
+            {/* URL bar */}
+            <div
+              style={{
+                backgroundColor: "#151515",
+                padding: "8px 14px",
+                borderBottom: `1px solid ${COLORS.accentGreen}20`,
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: "#0d0d0d",
+                  borderRadius: 4,
+                  padding: "6px 12px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                }}
+              >
+                {/* Lock icon */}
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke={COLORS.accentGreen}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ opacity: 0.7 }}
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <span
+                  style={{
+                    ...fontStyles.mono,
+                    fontSize: 12,
+                    color: COLORS.grayText,
+                  }}
+                >
+                  https://gogator.ai/eval/terminal
+                </span>
+              </div>
+            </div>
+          </>
+        )}
+
         {/* Terminal content */}
         <div
           style={{

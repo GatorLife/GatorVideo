@@ -243,6 +243,7 @@ export const Scene6_Resolution: React.FC = () => {
             style={{
               opacity: statusOpacity,
               transform: `scale(${Math.max(0, statusScale)})`,
+              marginTop: 40,
             }}
           >
             <span
@@ -251,7 +252,6 @@ export const Scene6_Resolution: React.FC = () => {
                 fontSize: 48,
                 color: COLORS.accentGreen,
                 letterSpacing: 6,
-                textShadow: `0 0 ${30 * glowPulse}px ${COLORS.accentGreen}`,
               }}
             >
               {status}

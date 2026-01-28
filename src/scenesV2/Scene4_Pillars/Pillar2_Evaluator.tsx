@@ -219,10 +219,11 @@ export const Pillar2_Evaluator: React.FC = () => {
       >
         <TerminalMockup
           lines={TERMINAL_LINES}
-          width={520}
+          width={624}
           startFrame={20}
           variant="gator"
           showAsciiHeader
+          showWindowFrame
         />
       </div>
 

@@ -93,7 +93,7 @@ export const Scene5_Security: React.FC = () => {
             filter: `drop-shadow(0 0 ${20 * glowPulse}px ${COLORS.accentGreen})`,
           }}
         >
-          🛡️
+          🏛️
         </div>
 
         {/* Title */}
