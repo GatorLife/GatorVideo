@@ -282,7 +282,7 @@ export const Scene7_CTA: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
       <Sequence from={30}>
-        <Audio src={staticFile("Scene7.mp3")} />
+        <Audio src={staticFile("Scene7.mp3")} playbackRate={1.1} />
       </Sequence>
       {/* Video layer - Gator_Outro.mp4 full screen */}
       <AbsoluteFill style={{ opacity: videoOpacity }}>

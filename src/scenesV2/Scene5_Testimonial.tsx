@@ -131,7 +131,7 @@ export const Scene5_Testimonial: React.FC = () => {
         backgroundColor: COLORS.black,
       }}
     >
-      <Audio src={staticFile("Scene6.mp3")} />
+      <Audio src={staticFile("Scene6.mp3")} playbackRate={1.1} />
 
       {/* Subtle background glow */}
       <AbsoluteFill

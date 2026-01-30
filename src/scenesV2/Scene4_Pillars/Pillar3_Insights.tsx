@@ -61,7 +61,7 @@ export const Pillar3_Insights: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
-      <Audio src={staticFile("Scene4_Pillar3.mp3")} />
+      <Audio src={staticFile("Scene4_Pillar3.mp3")} playbackRate={1.1} />
       {/* Subtle grid */}
       <GridPattern strokeColor={COLORS.accentGreen} opacity={0.05} />
 

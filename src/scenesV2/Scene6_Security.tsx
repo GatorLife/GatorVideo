@@ -55,7 +55,7 @@ export const Scene6_Security: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black, opacity: sceneOpacity }}>
-      <Audio src={staticFile("Scene6_New.mp3")} />
+      <Audio src={staticFile("Scene6_New.mp3")} playbackRate={1.1} />
       {/* Subtle grid */}
       <GridPattern strokeColor={COLORS.accentGreen} opacity={0.06} />
 

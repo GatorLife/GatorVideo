@@ -76,7 +76,7 @@ export const Scene3_Thesis: React.FC = () => {
         opacity: sceneOpacity,
       }}
     >
-      <Audio src={staticFile("Scene3.mp3")} />
+      <Audio src={staticFile("Scene3.mp3")} playbackRate={1.1} />
       {/* Background glow */}
       <div
         style={{

@@ -44,7 +44,7 @@ export const Scene2_ReadinessGap: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
       {/* Voiceover audio */}
-      <Audio src={staticFile("Scene2.mp3")} />
+      <Audio src={staticFile("Scene2.mp3")} playbackRate={1.1} />
 
       {/* Background video - subtle */}
       <AbsoluteFill style={{ opacity: 0.7 }}>
