@@ -7,7 +7,6 @@ import { Pillar1_Environment } from "./Pillar1_Environment";
 import { Pillar2_Evaluator } from "./Pillar2_Evaluator";
 import { Pillar3_Insights } from "./Pillar3_Insights";
 
-const PILLAR_DURATION = TIMING_V2.pillar1_environment;
 const TRANSITION_DURATION = 15;
 
 export const Scene4_Pillars: React.FC = () => {
@@ -15,7 +14,7 @@ export const Scene4_Pillars: React.FC = () => {
     <AbsoluteFill>
       <TransitionSeries>
         {/* Pillar 1: AI Environment Generation */}
-        <TransitionSeries.Sequence durationInFrames={PILLAR_DURATION}>
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.pillar1_environment}>
           <Pillar1_Environment />
         </TransitionSeries.Sequence>
 
@@ -25,7 +24,7 @@ export const Scene4_Pillars: React.FC = () => {
         />
 
         {/* Pillar 2: AI Evaluator */}
-        <TransitionSeries.Sequence durationInFrames={PILLAR_DURATION}>
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.pillar2_evaluator}>
           <Pillar2_Evaluator />
         </TransitionSeries.Sequence>
 
@@ -35,7 +34,7 @@ export const Scene4_Pillars: React.FC = () => {
         />
 
         {/* Pillar 3: Reporting & Insights */}
-        <TransitionSeries.Sequence durationInFrames={PILLAR_DURATION}>
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.pillar3_insights}>
           <Pillar3_Insights />
         </TransitionSeries.Sequence>
       </TransitionSeries>

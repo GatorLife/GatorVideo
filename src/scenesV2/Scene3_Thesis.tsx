@@ -6,6 +6,7 @@ import {
   interpolate,
   staticFile,
   Img,
+  Audio,
 } from "remotion";
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
@@ -75,6 +76,7 @@ export const Scene3_Thesis: React.FC = () => {
         opacity: sceneOpacity,
       }}
     >
+      <Audio src={staticFile("Scene3.mp3")} />
       {/* Background glow */}
       <div
         style={{

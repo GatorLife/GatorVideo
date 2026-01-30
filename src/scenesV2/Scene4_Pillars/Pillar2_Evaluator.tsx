@@ -5,6 +5,8 @@ import {
   spring,
   useVideoConfig,
   AbsoluteFill,
+  Audio,
+  staticFile,
 } from "remotion";
 import { COLORS } from "../../config/theme";
 import { MESSAGING_V2 } from "../../config/themeV2";
@@ -15,19 +17,19 @@ import { GridPattern } from "../../components/GridPattern";
 const { title, features, description } = MESSAGING_V2.pillars.pillar2;
 
 const TERMINAL_LINES = [
-  { text: "nmap 172.20.10.0/24", type: "input" as const, delay: 30 },
-  { text: "Starting Nmap 7.94 ( https://nmap.org ) at 2026-01-25 22:24 UTC", type: "output" as const, delay: 50 },
-  { text: "Nmap scan report for 172.20.10.4", type: "output" as const, delay: 70 },
-  { text: "Host is up (0.000073s latency).", type: "output" as const, delay: 80 },
-  { text: "All 1000 scanned ports on 172.20.10.4 are in ignored states.", type: "output" as const, delay: 90 },
-  { text: "", type: "output" as const, delay: 100 },
-  { text: "Nmap scan report for 172.20.10.100", type: "output" as const, delay: 110 },
-  { text: "Host is up (0.000077s latency).", type: "output" as const, delay: 120 },
-  { text: "PORT     STATE SERVICE", type: "output" as const, delay: 130 },
-  { text: "80/tcp   open  http", type: "success" as const, delay: 140 },
-  { text: "443/tcp  open  https", type: "success" as const, delay: 150 },
-  { text: "", type: "output" as const, delay: 160 },
-  { text: "Nmap done: 256 IP addresses (5 hosts up) scanned in 3.29 seconds", type: "output" as const, delay: 180 },
+  { text: "nmap 172.20.10.0/24", type: "input" as const, delay: 60 },
+  { text: "Starting Nmap 7.94 ( https://nmap.org ) at 2026-01-25 22:24 UTC", type: "output" as const, delay: 100 },
+  { text: "Nmap scan report for 172.20.10.4", type: "output" as const, delay: 140 },
+  { text: "Host is up (0.000073s latency).", type: "output" as const, delay: 160 },
+  { text: "All 1000 scanned ports on 172.20.10.4 are in ignored states.", type: "output" as const, delay: 180 },
+  { text: "", type: "output" as const, delay: 200 },
+  { text: "Nmap scan report for 172.20.10.100", type: "output" as const, delay: 220 },
+  { text: "Host is up (0.000077s latency).", type: "output" as const, delay: 240 },
+  { text: "PORT     STATE SERVICE", type: "output" as const, delay: 260 },
+  { text: "80/tcp   open  http", type: "success" as const, delay: 280 },
+  { text: "443/tcp  open  https", type: "success" as const, delay: 300 },
+  { text: "", type: "output" as const, delay: 320 },
+  { text: "Nmap done: 256 IP addresses (5 hosts up) scanned in 3.29 seconds", type: "output" as const, delay: 360 },
 ];
 
 export const Pillar2_Evaluator: React.FC = () => {
@@ -41,22 +43,23 @@ export const Pillar2_Evaluator: React.FC = () => {
     config: { damping: 12, stiffness: 100 },
   });
 
-  // Title animation
-  const titleOpacity = interpolate(frame, [15, 35], [0, 1], {
+  // Title animation (delayed for 17s duration)
+  const titleOpacity = interpolate(frame, [30, 60], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const titleY = interpolate(frame, [15, 35], [20, 0], {
+  const titleY = interpolate(frame, [30, 60], [20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Features staggered animation
-  const featureStartFrame = 50;
+  // Features staggered animation (spread out more)
+  const featureStartFrame = 100;
+  const featureDelay = 50; // More time between each feature
 
-  // Description animation
-  const descOpacity = interpolate(frame, [140, 160], [0, 1], {
+  // Description animation (appears later in the scene)
+  const descOpacity = interpolate(frame, [300, 340], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -70,6 +73,7 @@ export const Pillar2_Evaluator: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
+      <Audio src={staticFile("Scene4_Pillar2.mp3")} />
       {/* Subtle grid */}
       <GridPattern strokeColor={COLORS.accentGreen} opacity={0.05} />
 
@@ -141,17 +145,17 @@ export const Pillar2_Evaluator: React.FC = () => {
         {/* Features */}
         <div style={{ marginBottom: 28 }}>
           {features.map((feature, index) => {
-            const delay = index * 20;
+            const delay = index * featureDelay;
             const featureOpacity = interpolate(
               frame - featureStartFrame - delay,
-              [0, 20],
+              [0, 30],
               [0, 1],
               { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
             );
 
             const featureX = interpolate(
               frame - featureStartFrame - delay,
-              [0, 20],
+              [0, 30],
               [-30, 0],
               { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
             );
@@ -221,7 +225,7 @@ export const Pillar2_Evaluator: React.FC = () => {
         <TerminalMockup
           lines={TERMINAL_LINES}
           width={624}
-          startFrame={20}
+          startFrame={45}
           variant="gator"
           showAsciiHeader
           showWindowFrame

@@ -1,5 +1,6 @@
 import React from "react";
-import { useCurrentFrame, interpolate, spring, useVideoConfig, OffthreadVideo, staticFile } from "remotion";
+import { useCurrentFrame, interpolate, spring, useVideoConfig, staticFile, Audio } from "remotion";
+import { Video } from "@remotion/media";
 import { COLORS } from "../config/theme";
 import { fontStyles } from "../config/fonts";
 
@@ -13,8 +14,9 @@ export const Scene2_Problem: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Problem text reveals
-  const problemStartFrames = [30, 110, 190];
+  // Problem text reveals - timed to voiceover (8 seconds total)
+  // Each statement appears slightly before it's spoken for better readability
+  const problemStartFrames = [15, 85, 165];
 
   return (
     <div
@@ -26,6 +28,9 @@ export const Scene2_Problem: React.FC = () => {
         overflow: "hidden",
       }}
     >
+      {/* Voiceover audio */}
+      <Audio src={staticFile("Scene2.mp3")} />
+
       {/* Full screen video background with dark overlay */}
       <div
         style={{
@@ -34,7 +39,7 @@ export const Scene2_Problem: React.FC = () => {
           opacity: 0.35,
         }}
       >
-        <OffthreadVideo
+        <Video
           src={staticFile("Gator_Video_EmergencyOpsCenter.mp4")}
           muted
           style={{

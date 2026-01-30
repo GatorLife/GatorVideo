@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentFrame, interpolate, staticFile, Img } from "remotion";
+import { useCurrentFrame, interpolate, staticFile, Img, Audio } from "remotion";
 import { MatrixRain } from "../components/MatrixRain";
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
@@ -82,6 +82,9 @@ export const Scene1_Hook: React.FC = () => {
         overflow: "hidden",
       }}
     >
+      {/* Modem sound effect - ends 1 second before scene transition */}
+      <Audio src={staticFile("GATOR_Modem.wav")} endAt={TIMING_V2.scene1_hook - 30} />
+
       {/* Matrix rain background - only appears after typing */}
       {frame >= matrixStartFrame && (
         <MatrixRain opacity={matrixOpacity} columns={60} speed={5} />

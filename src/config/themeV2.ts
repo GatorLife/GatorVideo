@@ -5,21 +5,22 @@ export { COLORS, TYPOGRAPHY, DIMENSIONS } from "./theme";
 
 export const TIMING_V2 = {
   fps: 30,
-  totalDuration: 2010, // ~67 seconds
+  totalDuration: 2981, // ~99 seconds (8 scenes with transitions)
 
   // Scene durations in frames (30fps = 30 frames per second)
-  scene1_hook: 180, // 6 seconds - Matrix intro with NDAA reference
-  scene2_readinessGap: 240, // 8 seconds - Three gaps problem framing
-  scene3_thesis: 150, // 5 seconds - "I Think" to "I Know" + logo
-  scene4_pillars: 720, // 24 seconds - Three pillars (8s each)
-  scene5_security: 180, // 6 seconds - Trust signals
-  scene6_resolution: 300, // 10 seconds - Testimonial + metrics
-  scene7_cta: 240, // 8 seconds - Updated CTA with pilot mention
+  scene1_hook: 240, // 8 seconds - Matrix intro with NDAA reference
+  scene2_readinessGap: 300, // 10 seconds - Three gaps problem framing
+  scene3_thesis: 210, // 7 seconds - "I Think" to "I Know" + logo
+  scene4_pillars: 1470, // 49 seconds - Three pillars (18s + 19s + 12s)
+  scene5_security: 240, // 8 seconds - Trust signals (6s content + 2s buffer)
+  scene6_testimonial: 210, // 7 seconds - Dual testimonials (5s + 2s read time)
+  scene7_metrics: 180, // 6 seconds - Work roles, gen time, MISSION CAPABLE
+  scene8_cta: 233, // ~7.8 seconds - Updated CTA with pilot mention
 
-  // Pillar sub-timing (within Scene 4)
-  pillar1_environment: 240, // 8 seconds
-  pillar2_evaluator: 240, // 8 seconds
-  pillar3_insights: 240, // 8 seconds
+  // Pillar sub-timing (within Scene 4) - includes 2s buffer at end
+  pillar1_environment: 540, // 18 seconds (16s content + 2s buffer)
+  pillar2_evaluator: 570, // 19 seconds (17s content + 2s buffer)
+  pillar3_insights: 360, // 12 seconds (10s content + 2s buffer)
 
   // Transition durations
   glitchTransition: 12,
@@ -113,6 +114,12 @@ export const MESSAGING_V2 = {
         "GATOR gives us defensible readiness data - not just range time.",
       author: "SMSgt Larsen",
       role: "Cyber Operations",
+    },
+    testimonial2: {
+      quote:
+        "Real-world cyber attacks we can evaluate on. Its exactly what operators need and what GATOR provides.",
+      author: "Capt Lewis",
+      role: "Sq/DO",
     },
     metrics: [
       { label: "Work Roles", value: "54", status: "green" },

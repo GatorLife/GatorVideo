@@ -5,6 +5,8 @@ import {
   spring,
   useVideoConfig,
   AbsoluteFill,
+  Audio,
+  staticFile,
 } from "remotion";
 import { COLORS } from "../../config/theme";
 import { MESSAGING_V2 } from "../../config/themeV2";
@@ -26,22 +28,23 @@ export const Pillar3_Insights: React.FC = () => {
     config: { damping: 12, stiffness: 100 },
   });
 
-  // Title animation
-  const titleOpacity = interpolate(frame, [15, 35], [0, 1], {
+  // Title animation (adjusted for 10s content duration)
+  const titleOpacity = interpolate(frame, [30, 60], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const titleY = interpolate(frame, [15, 35], [20, 0], {
+  const titleY = interpolate(frame, [30, 60], [20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Features staggered animation
-  const featureStartFrame = 50;
+  // Features staggered animation (spread out more)
+  const featureStartFrame = 90;
+  const featureDelay = 35; // More time between each feature
 
-  // Description animation
-  const descOpacity = interpolate(frame, [140, 160], [0, 1], {
+  // Description animation (appears later in the scene)
+  const descOpacity = interpolate(frame, [200, 240], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -54,10 +57,11 @@ export const Pillar3_Insights: React.FC = () => {
   );
 
   // Metrics timing
-  const metricsStartFrame = 60;
+  const metricsStartFrame = 100;
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
+      <Audio src={staticFile("Scene4_Pillar3.mp3")} />
       {/* Subtle grid */}
       <GridPattern strokeColor={COLORS.accentGreen} opacity={0.05} />
 
@@ -129,17 +133,17 @@ export const Pillar3_Insights: React.FC = () => {
         {/* Features */}
         <div style={{ marginBottom: 28 }}>
           {features.map((feature, index) => {
-            const delay = index * 20;
+            const delay = index * featureDelay;
             const featureOpacity = interpolate(
               frame - featureStartFrame - delay,
-              [0, 20],
+              [0, 30],
               [0, 1],
               { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
             );
 
             const featureX = interpolate(
               frame - featureStartFrame - delay,
-              [0, 20],
+              [0, 30],
               [-30, 0],
               { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
             );
@@ -216,7 +220,7 @@ export const Pillar3_Insights: React.FC = () => {
           targetValue={95}
           label="Unit Readiness"
           size={280}
-          startFrame={20}
+          startFrame={40}
         />
 
         {/* Secondary metrics */}

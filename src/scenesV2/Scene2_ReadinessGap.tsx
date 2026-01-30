@@ -7,6 +7,7 @@ import {
   staticFile,
   OffthreadVideo,
   AbsoluteFill,
+  Audio,
 } from "remotion";
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
@@ -42,10 +43,14 @@ export const Scene2_ReadinessGap: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
+      {/* Voiceover audio */}
+      <Audio src={staticFile("Scene2.mp3")} />
+
       {/* Background video - subtle */}
       <AbsoluteFill style={{ opacity: 0.7 }}>
         <OffthreadVideo
           src={staticFile("Gator_Video_EmergencyOpsCenter.mp4")}
+          muted
           style={{
             width: "100%",
             height: "100%",

@@ -4,5 +4,6 @@ export { Scene2_ReadinessGap } from "./Scene2_ReadinessGap";
 export { Scene3_Thesis } from "./Scene3_Thesis";
 export { Scene4_Pillars } from "./Scene4_Pillars";
 export { Scene5_Security } from "./Scene5_Security";
-export { Scene6_Resolution } from "./Scene6_Resolution";
-export { Scene7_CTA } from "./Scene7_CTA";
+export { Scene6_Testimonial } from "./Scene6_Testimonial";
+export { Scene7_Metrics } from "./Scene7_Metrics";
+export { Scene8_CTA } from "./Scene8_CTA";

@@ -11,8 +11,9 @@ import { Scene2_ReadinessGap } from "./scenesV2/Scene2_ReadinessGap";
 import { Scene3_Thesis } from "./scenesV2/Scene3_Thesis";
 import { Scene4_Pillars } from "./scenesV2/Scene4_Pillars";
 import { Scene5_Security } from "./scenesV2/Scene5_Security";
-import { Scene6_Resolution } from "./scenesV2/Scene6_Resolution";
-import { Scene7_CTA } from "./scenesV2/Scene7_CTA";
+import { Scene6_Testimonial } from "./scenesV2/Scene6_Testimonial";
+import { Scene7_Metrics } from "./scenesV2/Scene7_Metrics";
+import { Scene8_CTA } from "./scenesV2/Scene8_CTA";
 import { TIMING_V2, COLORS } from "./config/themeV2";
 
 // Import fonts to ensure they're loaded
@@ -83,15 +84,26 @@ export const VideoV2: React.FC = () => {
           <Scene5_Security />
         </TransitionSeries.Sequence>
 
-        {/* Smooth fade to resolution */}
+        {/* Smooth fade to testimonial */}
         <TransitionSeries.Transition
           presentation={fade()}
           timing={linearTiming({ durationInFrames: transitionDuration })}
         />
 
-        {/* Scene 6: Resolution - Testimonial + Metrics */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene6_resolution}>
-          <Scene6_Resolution />
+        {/* Scene 6: Testimonial - SMSgt Larsen quote */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene6_testimonial}>
+          <Scene6_Testimonial />
+        </TransitionSeries.Sequence>
+
+        {/* Fade to metrics */}
+        <TransitionSeries.Transition
+          presentation={fade()}
+          timing={linearTiming({ durationInFrames: transitionDuration })}
+        />
+
+        {/* Scene 7: Metrics - Work roles, gen time, MISSION CAPABLE */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene7_metrics}>
+          <Scene7_Metrics />
         </TransitionSeries.Sequence>
 
         {/* Final fade to CTA */}
@@ -100,9 +112,9 @@ export const VideoV2: React.FC = () => {
           timing={linearTiming({ durationInFrames: transitionDuration })}
         />
 
-        {/* Scene 7: Call to Action */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene7_cta}>
-          <Scene7_CTA />
+        {/* Scene 8: Call to Action */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene8_cta}>
+          <Scene8_CTA />
         </TransitionSeries.Sequence>
       </TransitionSeries>
     </div>

@@ -1,14 +1,15 @@
 import "./index.css";
 import { Composition } from "remotion";
-import { Video } from "./Video";
+// import { Video } from "./Video"; // Archived with GatorPromo V1
 import { VideoV2 } from "./VideoV2";
-import { TIMING, DIMENSIONS } from "./config/theme";
+// import { TIMING } from "./config/theme"; // Archived with GatorPromo V1
+import { DIMENSIONS } from "./config/theme";
 import { TIMING_V2 } from "./config/themeV2";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {/* Original GatorPromo composition */}
+      {/* Archived GatorPromo V1 composition
       <Composition
         id="GatorPromo"
         component={Video}
@@ -17,6 +18,7 @@ export const RemotionRoot: React.FC = () => {
         width={DIMENSIONS.width}
         height={DIMENSIONS.height}
       />
+      */}
 
       {/* GatorPromoV2 - Updated with pitch deck messaging */}
       <Composition

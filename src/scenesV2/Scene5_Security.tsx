@@ -5,6 +5,8 @@ import {
   spring,
   useVideoConfig,
   AbsoluteFill,
+  Audio,
+  staticFile,
 } from "remotion";
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
@@ -53,6 +55,7 @@ export const Scene5_Security: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black, opacity: sceneOpacity }}>
+      <Audio src={staticFile("Scene5.mp3")} />
       {/* Subtle grid */}
       <GridPattern strokeColor={COLORS.accentGreen} opacity={0.06} />
 
