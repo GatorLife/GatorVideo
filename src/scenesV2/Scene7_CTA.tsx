@@ -22,7 +22,7 @@ const { lines, pilot, tagline, url, contact } = MESSAGING_V2.cta;
 const CROSSFADE_START = 60;
 const CROSSFADE_DURATION = 25;
 const CTA_START = 60;
-const CTA_DURATION = TIMING_V2.scene8_cta - CTA_START;
+const CTA_DURATION = TIMING_V2.scene7_cta - CTA_START;
 
 const CTAContent: React.FC = () => {
   const frame = useCurrentFrame();
@@ -268,7 +268,7 @@ const CTAContent: React.FC = () => {
   );
 };
 
-export const Scene8_CTA: React.FC = () => {
+export const Scene7_CTA: React.FC = () => {
   const frame = useCurrentFrame();
 
   // Video fades out during crossfade
@@ -281,7 +281,9 @@ export const Scene8_CTA: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
-      <Audio src={staticFile("Scene7.mp3")} />
+      <Sequence from={30}>
+        <Audio src={staticFile("Scene7.mp3")} />
+      </Sequence>
       {/* Video layer - Gator_Outro.mp4 full screen */}
       <AbsoluteFill style={{ opacity: videoOpacity }}>
         <OffthreadVideo

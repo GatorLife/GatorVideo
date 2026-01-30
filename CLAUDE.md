@@ -13,36 +13,37 @@ npm run upgrade     # Upgrade Remotion to latest version
 
 ## Architecture
 
-This is a **Remotion** project for creating promotional videos using React. The main composition is "GatorPromo" at 1920x1080, 30fps.
+This is a **Remotion** project for creating promotional videos using React. The active composition is **GatorPromoV2** at 1920x1080, 30fps (~93 seconds).
 
 ### Video Structure
 
-- **Root.tsx** - Defines the Composition with timing/dimensions from config
-- **Video.tsx** - Orchestrates all scenes using `TransitionSeries` from `@remotion/transitions`
+- **Root.tsx** - Defines compositions with timing/dimensions from config
+- **VideoV2.tsx** - Orchestrates all V2 scenes using `TransitionSeries` from `@remotion/transitions`
 
-### Scenes (src/scenes/)
+There are two versions:
+- **V2 (active)**: `scenesV2/`, `componentsV2/`, `config/themeV2.ts` - Current pitch deck messaging
+- **V1 (archived)**: `scenes/`, `components/`, `config/theme.ts` - Original version, commented out in Root.tsx
 
-The video has 7 sequential scenes with fade transitions between them:
-1. `Scene1_Hook` - Matrix-style intro with typing effect
-2. `Scene2_Problem` - Cyber attack visualization
-3. `Scene3_LogoReveal` - Logo animation
-4. `Scene4_ProductDemo` - Product walkthrough (most complex scene)
-5. `Scene5_Resolution` - Red to green transition
-6. `Scene6_Testimonial` - Quote/testimonial
-7. `Scene7_CTA` - Call to action
+### V2 Scenes (src/scenesV2/)
 
-**Scene4** has its own subdirectory structure with segments (`Segment1_EnvironmentCreation`, `Segment2_UserEvaluations`, `Segment3_Insights`), custom hooks, types, and config.
+7 sequential scenes with fade transitions:
+1. `Scene1_Hook` - Matrix intro with NDAA reference
+2. `Scene2_ReadinessGap` - Three gaps problem framing
+3. `Scene3_Thesis` - "I Think" to "I Know" transition + logo
+4. `Scene4_Pillars/` - Three pillars with sub-components (Pillar1_Environment, Pillar2_Evaluator, Pillar3_Insights)
+5. `Scene5_Testimonial` - Dual testimonials
+6. `Scene6_Security` - Trust signals and compliance badges
+7. `Scene7_CTA` - Call to action with pilot mention
 
 ### Configuration (src/config/)
 
-- **theme.ts** - `COLORS`, `TIMING` (scene durations in frames), `TYPOGRAPHY`, `DIMENSIONS`
+- **themeV2.ts** - `TIMING_V2` (scene durations in frames), `MESSAGING_V2` (all text content)
+- **theme.ts** - `COLORS`, `TYPOGRAPHY`, `DIMENSIONS` (shared between V1/V2)
 - **fonts.ts** - Google Fonts loading (Inter, JetBrains Mono) via `@remotion/google-fonts`
 
-### Reusable Components (src/components/)
+### V2 Components (src/componentsV2/)
 
-Visual effects and animations: `MatrixRain`, `GlowText`, `TypingEffect`, `GlitchTransition`, `HighlightBox`, `TextOverlay`, `StatusIndicator`, `GridPattern`, `QuoteCard`
-
-Demo simulation components in `components/demo/`: `AnimatedCursor`, `ClickFeedback`, `ScreenContainer`, `ScreenTransition`, `InputFieldSimulator`, `UIStateManager`
+`PillarCard`, `SplitCompare`, `MetricDisplay`, `ReadinessGauge`, `NetworkGraph`, `SecurityBadge`, `TerminalMockup`
 
 ### Assets (public/)
 
@@ -50,7 +51,8 @@ Screenshots and video files used in scenes. Reference with `staticFile()` from r
 
 ## Key Patterns
 
-- Scene timing is defined in frames in `src/config/theme.ts` (30fps = 30 frames per second)
+- Scene timing is defined in frames (30fps = 30 frames per second)
+- All V2 text content lives in `MESSAGING_V2` in `config/themeV2.ts`
 - Use `useCurrentFrame()` and `interpolate()` for animations
 - Use `TransitionSeries` for sequencing scenes with transitions
 - Tailwind CSS v4 is available via `@remotion/tailwind-v4`

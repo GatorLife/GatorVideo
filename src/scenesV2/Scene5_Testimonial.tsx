@@ -104,9 +104,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   );
 };
 
-export const Scene6_Testimonial: React.FC = () => {
+export const Scene5_Testimonial: React.FC = () => {
   const frame = useCurrentFrame();
-  const sceneDuration = TIMING_V2.scene6_testimonial;
+  const sceneDuration = TIMING_V2.scene5_testimonial;
 
   // First testimonial (left) - appears immediately
   const testimonial1Opacity = interpolate(
@@ -116,8 +116,8 @@ export const Scene6_Testimonial: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // Second testimonial (right) - appears 1.5 seconds later (45 frames)
-  const testimonial2Delay = 45;
+  // Second testimonial (right) - appears 3.5 seconds later (105 frames)
+  const testimonial2Delay = 105;
   const testimonial2Opacity = interpolate(
     frame,
     [testimonial2Delay, testimonial2Delay + 20, sceneDuration - 20, sceneDuration],

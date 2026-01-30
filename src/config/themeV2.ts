@@ -5,17 +5,16 @@ export { COLORS, TYPOGRAPHY, DIMENSIONS } from "./theme";
 
 export const TIMING_V2 = {
   fps: 30,
-  totalDuration: 2981, // ~99 seconds (8 scenes with transitions)
+  totalDuration: 2853, // ~95 seconds (7 scenes with transitions)
 
   // Scene durations in frames (30fps = 30 frames per second)
   scene1_hook: 240, // 8 seconds - Matrix intro with NDAA reference
   scene2_readinessGap: 300, // 10 seconds - Three gaps problem framing
   scene3_thesis: 210, // 7 seconds - "I Think" to "I Know" + logo
   scene4_pillars: 1470, // 49 seconds - Three pillars (18s + 19s + 12s)
-  scene5_security: 240, // 8 seconds - Trust signals (6s content + 2s buffer)
-  scene6_testimonial: 210, // 7 seconds - Dual testimonials (5s + 2s read time)
-  scene7_metrics: 180, // 6 seconds - Work roles, gen time, MISSION CAPABLE
-  scene8_cta: 233, // ~7.8 seconds - Updated CTA with pilot mention
+  scene5_testimonial: 210, // 7 seconds - Dual testimonials (5s + 2s read time)
+  scene6_security: 240, // 8 seconds - Trust signals (6s content + 2s buffer)
+  scene7_cta: 300, // 10 seconds - CTA with 1s audio delay
 
   // Pillar sub-timing (within Scene 4) - includes 2s buffer at end
   pillar1_environment: 540, // 18 seconds (16s content + 2s buffer)
