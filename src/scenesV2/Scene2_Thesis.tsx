@@ -14,7 +14,7 @@ import { fontStyles } from "../config/fonts";
 
 const { transition, subtitle, tagline } = MESSAGING_V2.thesis;
 
-export const Scene3_Thesis: React.FC = () => {
+export const Scene2_Thesis: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -56,7 +56,7 @@ export const Scene3_Thesis: React.FC = () => {
   // Scene fade out
   const sceneOpacity = interpolate(
     frame,
-    [TIMING_V2.scene3_thesis - 15, TIMING_V2.scene3_thesis],
+    [TIMING_V2.scene2_thesis - 15, TIMING_V2.scene2_thesis],
     [1, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );

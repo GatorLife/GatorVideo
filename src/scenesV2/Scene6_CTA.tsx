@@ -22,7 +22,7 @@ const { lines, pilot, tagline, url, contact } = MESSAGING_V2.cta;
 const CROSSFADE_START = 60;
 const CROSSFADE_DURATION = 25;
 const CTA_START = 60;
-const CTA_DURATION = TIMING_V2.scene7_cta - CTA_START;
+const CTA_DURATION = TIMING_V2.scene6_cta - CTA_START;
 
 const CTAContent: React.FC = () => {
   const frame = useCurrentFrame();
@@ -268,7 +268,7 @@ const CTAContent: React.FC = () => {
   );
 };
 
-export const Scene7_CTA: React.FC = () => {
+export const Scene6_CTA: React.FC = () => {
   const frame = useCurrentFrame();
 
   // Video fades out during crossfade

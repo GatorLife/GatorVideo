@@ -8,6 +8,7 @@ import {
   OffthreadVideo,
   AbsoluteFill,
   Audio,
+  Sequence,
 } from "remotion";
 import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
@@ -15,42 +16,66 @@ import { fontStyles } from "../config/fonts";
 
 const { title, gaps } = MESSAGING_V2.readinessGap;
 
-export const Scene2_ReadinessGap: React.FC = () => {
+// Video plays for 8 seconds (240 frames), then components load
+const CONTENT_START = 250; // Start content slightly after video ends
+
+export const Scene1_ReadinessGap: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Title animation
-  const titleOpacity = interpolate(frame, [0, 20], [0, 1], {
+  // Content-relative frame (starts at 0 when content begins)
+  const contentFrame = Math.max(0, frame - CONTENT_START);
+
+  // Title animation (relative to content start)
+  const titleOpacity = interpolate(contentFrame, [0, 20], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const titleY = interpolate(frame, [0, 30], [-30, 0], {
+  const titleY = interpolate(contentFrame, [0, 30], [-30, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Gaps section timing
+  // Gaps section timing (relative to content start)
   const gapsStartFrame = 40;
 
   // Scene fade out
   const sceneOpacity = interpolate(
     frame,
-    [TIMING_V2.scene2_readinessGap - 20, TIMING_V2.scene2_readinessGap],
+    [TIMING_V2.scene1_readinessGap - 20, TIMING_V2.scene1_readinessGap],
     [1, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
+  // Content visibility (only show after video completes)
+  const contentOpacity = interpolate(
+    frame,
+    [CONTENT_START - 10, CONTENT_START + 10],
+    [0, 1],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.black }}>
-      {/* Voiceover audio */}
-      <Audio src={staticFile("Scene2.mp3")} playbackRate={1.1} />
+      {/* Voiceover audio - starts when content loads */}
+      <Sequence from={CONTENT_START}>
+        <Audio src={staticFile("Scene2.mp3")} playbackRate={1.1} />
+      </Sequence>
 
-      {/* Background video - subtle */}
+      {/* Background video - plays for 8 seconds then freezes, audio fades out */}
       <AbsoluteFill style={{ opacity: 0.7 }}>
         <OffthreadVideo
           src={staticFile("Gator_Video_EmergencyOpsCenter.mp4")}
-          muted
+          volume={(f) => {
+            // Fade out video audio from frame 200-240 to blend with music
+            if (f < 200) return 0.8;
+            return interpolate(f, [200, 240], [0.8, 0], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            });
+          }}
+          pauseWhenBuffering
           style={{
             width: "100%",
             height: "100%",
@@ -59,14 +84,14 @@ export const Scene2_ReadinessGap: React.FC = () => {
         />
       </AbsoluteFill>
 
-      {/* Dark overlay */}
+      {/* Dark overlay - intensifies when content appears */}
       <AbsoluteFill
         style={{
-          background: `radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.95) 100%)`,
+          background: `radial-gradient(ellipse at center, rgba(0,0,0,${0.5 + contentOpacity * 0.2}) 0%, rgba(0,0,0,${0.8 + contentOpacity * 0.15}) 100%)`,
         }}
       />
 
-      {/* Content */}
+      {/* Content - appears after video completes */}
       <div
         style={{
           width: "100%",
@@ -75,49 +100,52 @@ export const Scene2_ReadinessGap: React.FC = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: 60,
-          opacity: sceneOpacity,
+          paddingBottom: 100,
+          opacity: sceneOpacity * contentOpacity,
         }}
       >
-        {/* Title */}
-        <h1
-          style={{
-            ...fontStyles.heading,
-            fontSize: 56,
-            color: COLORS.warningRed,
-            margin: 0,
-            marginBottom: 40,
-            opacity: titleOpacity,
-            transform: `translateY(${titleY}px)`,
-            textShadow: `0 0 30px ${COLORS.warningRed}50`,
-          }}
-        >
-          {title}
-        </h1>
-
-        {/* The Three Gaps */}
-        {frame >= gapsStartFrame && (
-          <div
+        {/* Title - fixed height container to prevent shifting */}
+        <div style={{ height: 100, display: "flex", alignItems: "center" }}>
+          <h1
             style={{
-              display: "flex",
-              gap: 50,
-              justifyContent: "center",
-              alignItems: "stretch",
+              ...fontStyles.heading,
+              fontSize: 56,
+              color: COLORS.warningRed,
+              margin: 0,
+              textAlign: "center",
+              opacity: titleOpacity,
+              transform: `translateY(${titleY}px)`,
+              textShadow: `0 0 30px ${COLORS.warningRed}50`,
             }}
           >
+            {title}
+          </h1>
+        </div>
+
+        {/* The Three Gaps - fixed height container */}
+        <div style={{ height: 320, display: "flex", alignItems: "flex-start", paddingTop: 30 }}>
+          {contentFrame >= gapsStartFrame && (
+            <div
+              style={{
+                display: "flex",
+                gap: 50,
+                justifyContent: "center",
+                alignItems: "stretch",
+              }}
+            >
             {gaps.map((gap, index) => {
-              const delay = index * 20;
+              const delay = index * 40;
               const gapOpacity = interpolate(
-                frame - gapsStartFrame - delay,
-                [0, 20],
+                contentFrame - gapsStartFrame - delay,
+                [0, 40],
                 [0, 1],
                 { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
               );
 
               const gapScale = spring({
-                frame: frame - gapsStartFrame - delay,
+                frame: contentFrame - gapsStartFrame - delay,
                 fps,
-                config: { damping: 12, stiffness: 100 },
+                config: { damping: 15, stiffness: 60 },
               });
 
               return (
@@ -167,6 +195,7 @@ export const Scene2_ReadinessGap: React.FC = () => {
                       color: COLORS.grayText,
                       margin: 0,
                       lineHeight: 1.5,
+                      whiteSpace: "pre-line",
                     }}
                   >
                     {gap.description}
@@ -174,8 +203,9 @@ export const Scene2_ReadinessGap: React.FC = () => {
                 </div>
               );
             })}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </AbsoluteFill>
   );

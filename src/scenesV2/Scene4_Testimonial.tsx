@@ -104,9 +104,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   );
 };
 
-export const Scene5_Testimonial: React.FC = () => {
+export const Scene4_Testimonial: React.FC = () => {
   const frame = useCurrentFrame();
-  const sceneDuration = TIMING_V2.scene5_testimonial;
+  const sceneDuration = TIMING_V2.scene4_testimonial;
 
   // First testimonial (left) - appears immediately
   const testimonial1Opacity = interpolate(

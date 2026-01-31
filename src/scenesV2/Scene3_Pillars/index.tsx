@@ -9,7 +9,7 @@ import { Pillar3_Insights } from "./Pillar3_Insights";
 
 const TRANSITION_DURATION = 15;
 
-export const Scene4_Pillars: React.FC = () => {
+export const Scene3_Pillars: React.FC = () => {
   return (
     <AbsoluteFill>
       <TransitionSeries>

@@ -7,22 +7,23 @@ import {
 } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 
-import { Scene1_Hook } from "./scenesV2/Scene1_Hook";
-import { Scene2_ReadinessGap } from "./scenesV2/Scene2_ReadinessGap";
-import { Scene3_Thesis } from "./scenesV2/Scene3_Thesis";
-import { Scene4_Pillars } from "./scenesV2/Scene4_Pillars";
-import { Scene5_Testimonial } from "./scenesV2/Scene5_Testimonial";
-import { Scene6_Security } from "./scenesV2/Scene6_Security";
-import { Scene7_CTA } from "./scenesV2/Scene7_CTA";
+import { Scene1_ReadinessGap } from "./scenesV2/Scene1_ReadinessGap";
+import { Scene2_Thesis } from "./scenesV2/Scene2_Thesis";
+import { Scene3_Pillars } from "./scenesV2/Scene3_Pillars";
+import { Scene4_Testimonial } from "./scenesV2/Scene4_Testimonial";
+import { Scene5_Security } from "./scenesV2/Scene5_Security";
+import { Scene6_CTA } from "./scenesV2/Scene6_CTA";
 import { TIMING_V2, COLORS } from "./config/themeV2";
 
 // Import fonts to ensure they're loaded
 import "./config/fonts";
 
+// Background music starts during video fade-out for smooth crossfade
+const MUSIC_START = 200;
+
 export const VideoV2: React.FC = () => {
   const transitionDuration = TIMING_V2.fadeTransition;
-  const glitchDuration = TIMING_V2.glitchTransition;
-  const musicDuration = TIMING_V2.totalDuration - TIMING_V2.scene1_hook;
+  const musicDuration = TIMING_V2.totalDuration - MUSIC_START;
 
   return (
     <div
@@ -32,20 +33,22 @@ export const VideoV2: React.FC = () => {
         backgroundColor: COLORS.black,
       }}
     >
-      {/* Background soundtrack - starts after Scene 1 */}
-      <Sequence from={TIMING_V2.scene1_hook} durationInFrames={musicDuration}>
+      {/* Background soundtrack - crossfades with Scene 1 video audio */}
+      <Sequence from={MUSIC_START} durationInFrames={musicDuration}>
         <Audio
           src={staticFile("GATOR_Soundtrack.wav")}
           volume={(f) => {
-            const fadeIn = 30; // 1 second
-            const fadeOut = 60; // 2 seconds
+            const crossfadeDuration = 50; // Crossfade from frame 200-250
+            const fadeOut = 60; // 2 seconds at end
 
-            if (f < fadeIn) {
-              return interpolate(f, [0, fadeIn], [0, 0.15], {
+            // Slow fade in during crossfade with video audio
+            if (f < crossfadeDuration) {
+              return interpolate(f, [0, crossfadeDuration], [0, 0.15], {
                 extrapolateLeft: "clamp",
                 extrapolateRight: "clamp",
               });
             }
+            // Fade out at end
             if (f > musicDuration - fadeOut) {
               return interpolate(f, [musicDuration - fadeOut, musicDuration], [0.15, 0], {
                 extrapolateLeft: "clamp",
@@ -58,20 +61,9 @@ export const VideoV2: React.FC = () => {
       </Sequence>
 
       <TransitionSeries>
-        {/* Scene 1: Hook - Matrix intro with NDAA reference */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene1_hook}>
-          <Scene1_Hook />
-        </TransitionSeries.Sequence>
-
-        {/* Glitch-style transition */}
-        <TransitionSeries.Transition
-          presentation={fade()}
-          timing={linearTiming({ durationInFrames: glitchDuration })}
-        />
-
-        {/* Scene 2: Readiness Gap - Three gaps problem framing */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene2_readinessGap}>
-          <Scene2_ReadinessGap />
+        {/* Scene 1: Readiness Gap - Three gaps problem framing */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene1_readinessGap}>
+          <Scene1_ReadinessGap />
         </TransitionSeries.Sequence>
 
         {/* Smooth fade to thesis */}
@@ -80,9 +72,9 @@ export const VideoV2: React.FC = () => {
           timing={linearTiming({ durationInFrames: transitionDuration })}
         />
 
-        {/* Scene 3: Thesis - "I Think" to "I Know" + Logo */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene3_thesis}>
-          <Scene3_Thesis />
+        {/* Scene 2: Thesis - "I Think" to "I Know" + Logo */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene2_thesis}>
+          <Scene2_Thesis />
         </TransitionSeries.Sequence>
 
         {/* Smooth fade to pillars */}
@@ -94,9 +86,9 @@ export const VideoV2: React.FC = () => {
           })}
         />
 
-        {/* Scene 4: Three Pillars - Core value props */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene4_pillars}>
-          <Scene4_Pillars />
+        {/* Scene 3: Three Pillars - Core value props */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene3_pillars}>
+          <Scene3_Pillars />
         </TransitionSeries.Sequence>
 
         {/* Fade to testimonial */}
@@ -105,9 +97,9 @@ export const VideoV2: React.FC = () => {
           timing={linearTiming({ durationInFrames: transitionDuration })}
         />
 
-        {/* Scene 5: Testimonial - Dual testimonials */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene5_testimonial}>
-          <Scene5_Testimonial />
+        {/* Scene 4: Testimonial - Dual testimonials */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene4_testimonial}>
+          <Scene4_Testimonial />
         </TransitionSeries.Sequence>
 
         {/* Smooth fade to security */}
@@ -116,9 +108,9 @@ export const VideoV2: React.FC = () => {
           timing={linearTiming({ durationInFrames: transitionDuration })}
         />
 
-        {/* Scene 6: Security - Trust signals */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene6_security}>
-          <Scene6_Security />
+        {/* Scene 5: Security - Trust signals */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene5_security}>
+          <Scene5_Security />
         </TransitionSeries.Sequence>
 
         {/* Final fade to CTA */}
@@ -127,9 +119,9 @@ export const VideoV2: React.FC = () => {
           timing={linearTiming({ durationInFrames: transitionDuration })}
         />
 
-        {/* Scene 7: Call to Action */}
-        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene7_cta}>
-          <Scene7_CTA />
+        {/* Scene 6: Call to Action */}
+        <TransitionSeries.Sequence durationInFrames={TIMING_V2.scene6_cta}>
+          <Scene6_CTA />
         </TransitionSeries.Sequence>
       </TransitionSeries>
     </div>

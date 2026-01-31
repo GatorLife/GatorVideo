@@ -13,7 +13,7 @@ npm run upgrade     # Upgrade Remotion to latest version
 
 ## Architecture
 
-This is a **Remotion** project for creating promotional videos using React. The active composition is **GatorPromoV2** at 1920x1080, 30fps (~93 seconds).
+This is a **Remotion** project for creating promotional videos using React. The active composition is **GatorPromoV2** at 1920x1080, 30fps (~97 seconds).
 
 ### Video Structure
 
@@ -26,14 +26,13 @@ There are two versions:
 
 ### V2 Scenes (src/scenesV2/)
 
-7 sequential scenes with fade transitions:
-1. `Scene1_Hook` - Matrix intro with NDAA reference
-2. `Scene2_ReadinessGap` - Three gaps problem framing
-3. `Scene3_Thesis` - "I Think" to "I Know" transition + logo
-4. `Scene4_Pillars/` - Three pillars with sub-components (Pillar1_Environment, Pillar2_Evaluator, Pillar3_Insights)
-5. `Scene5_Testimonial` - Dual testimonials
-6. `Scene6_Security` - Trust signals and compliance badges
-7. `Scene7_CTA` - Call to action with pilot mention
+6 sequential scenes with fade transitions:
+1. `Scene1_ReadinessGap` - Three gaps problem framing
+2. `Scene2_Thesis` - "I Think" to "I Know" transition + logo
+3. `Scene3_Pillars/` - Three pillars with sub-components (Pillar1_Environment, Pillar2_Evaluator, Pillar3_Insights)
+4. `Scene4_Testimonial` - Dual testimonials
+5. `Scene5_Security` - Trust signals and compliance badges
+6. `Scene6_CTA` - Call to action with pilot mention
 
 ### Configuration (src/config/)
 

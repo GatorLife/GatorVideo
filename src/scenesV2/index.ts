@@ -1,8 +1,7 @@
 // GatorPromoV2 Scenes Export
-export { Scene1_Hook } from "./Scene1_Hook";
-export { Scene2_ReadinessGap } from "./Scene2_ReadinessGap";
-export { Scene3_Thesis } from "./Scene3_Thesis";
-export { Scene4_Pillars } from "./Scene4_Pillars";
-export { Scene5_Testimonial } from "./Scene5_Testimonial";
-export { Scene6_Security } from "./Scene6_Security";
-export { Scene7_CTA } from "./Scene7_CTA";
+export { Scene1_ReadinessGap } from "./Scene1_ReadinessGap";
+export { Scene2_Thesis } from "./Scene2_Thesis";
+export { Scene3_Pillars } from "./Scene3_Pillars";
+export { Scene4_Testimonial } from "./Scene4_Testimonial";
+export { Scene5_Security } from "./Scene5_Security";
+export { Scene6_CTA } from "./Scene6_CTA";

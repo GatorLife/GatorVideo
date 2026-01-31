@@ -16,7 +16,7 @@ import { GridPattern } from "../components/GridPattern";
 
 const { title, badges, subtitle } = MESSAGING_V2.security;
 
-export const Scene6_Security: React.FC = () => {
+export const Scene5_Security: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -41,7 +41,7 @@ export const Scene6_Security: React.FC = () => {
   // Scene fade out
   const sceneOpacity = interpolate(
     frame,
-    [TIMING_V2.scene6_security - 20, TIMING_V2.scene6_security],
+    [TIMING_V2.scene5_security - 20, TIMING_V2.scene5_security],
     [1, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
