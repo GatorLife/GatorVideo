@@ -5,14 +5,14 @@ export { COLORS, TYPOGRAPHY, DIMENSIONS } from "./theme";
 
 export const TIMING_V2 = {
   fps: 30,
-  totalDuration: 2901, // ~97 seconds (6 scenes with transitions)
+  totalDuration: 2961, // ~99 seconds (6 scenes with transitions)
 
   // Scene durations in frames (30fps = 30 frames per second)
   scene1_readinessGap: 600, // 20 seconds - Video intro (8s) + Three gaps problem framing (12s)
   scene2_thesis: 210, // 7 seconds - "I Think" to "I Know" + logo
   scene3_pillars: 1470, // 49 seconds - Three pillars (18s + 19s + 12s)
-  scene4_testimonial: 210, // 7 seconds - Dual testimonials (5s + 2s read time)
-  scene5_security: 240, // 8 seconds - Trust signals (6s content + 2s buffer)
+  scene4_testimonial: 240, // 8 seconds - Dual testimonials (5s + 3s read time)
+  scene5_security: 270, // 9 seconds - Trust signals (6s content + 3s buffer)
   scene6_cta: 300, // 10 seconds - CTA with 1s audio delay
 
   // Pillar sub-timing (within Scene 3) - includes 2s buffer at end
