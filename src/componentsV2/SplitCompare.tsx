@@ -68,7 +68,7 @@ export const SplitCompare: React.FC<SplitCompareProps> = ({
     <div
       style={{
         flex: 1,
-        padding: 40,
+        padding: "16px 40px",
         opacity: slideProgress,
         transform: `translateX(${xOffset}px)`,
         display: "flex",
@@ -80,7 +80,7 @@ export const SplitCompare: React.FC<SplitCompareProps> = ({
       <h3
         style={{
           ...fontStyles.heading,
-          fontSize: 28,
+          fontSize: 34,
           color: column.color,
           margin: 0,
           marginBottom: 24,
@@ -96,7 +96,7 @@ export const SplitCompare: React.FC<SplitCompareProps> = ({
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: 16,
+          gap: 22,
           alignItems: isRight ? "flex-start" : "flex-end",
         }}
       >
@@ -122,8 +122,8 @@ export const SplitCompare: React.FC<SplitCompareProps> = ({
             >
               <div
                 style={{
-                  width: 10,
-                  height: 10,
+                  width: 12,
+                  height: 12,
                   borderRadius: "50%",
                   backgroundColor: column.color,
                   boxShadow: `0 0 10px ${column.color}`,
@@ -132,7 +132,7 @@ export const SplitCompare: React.FC<SplitCompareProps> = ({
               <span
                 style={{
                   ...fontStyles.body,
-                  fontSize: 22,
+                  fontSize: 28,
                   color: COLORS.white,
                 }}
               >

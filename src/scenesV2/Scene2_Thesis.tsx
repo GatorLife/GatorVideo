@@ -12,7 +12,7 @@ import { COLORS } from "../config/theme";
 import { TIMING_V2, MESSAGING_V2 } from "../config/themeV2";
 import { fontStyles } from "../config/fonts";
 
-const { transition, subtitle, tagline } = MESSAGING_V2.thesis;
+const { transition, subtitle, tagline, focusArea } = MESSAGING_V2.thesis;
 
 export const Scene2_Thesis: React.FC = () => {
   const frame = useCurrentFrame();
@@ -43,6 +43,12 @@ export const Scene2_Thesis: React.FC = () => {
   });
 
   // Tagline animation
+  // Trails the tagline so the eye reads positioning first, alignment second.
+  const focusAreaOpacity = interpolate(frame, [105, 128], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
   const taglineOpacity = interpolate(frame, [90, 110], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -182,6 +188,28 @@ export const Scene2_Thesis: React.FC = () => {
           }}
         >
           {tagline}
+        </span>
+      </div>
+
+      {/* Strategic Focus Area. The Criteria 2 rubric (40% - the heaviest) grades
+          focus-area alignment at every band, and nothing else in the video names
+          one. Must stay in step with the area selected on the submission form. */}
+      <div
+        style={{
+          marginTop: 14,
+          opacity: focusAreaOpacity,
+        }}
+      >
+        <span
+          style={{
+            ...fontStyles.mono,
+            fontSize: 18,
+            color: COLORS.accentGreen,
+            textTransform: "uppercase",
+            letterSpacing: 2,
+          }}
+        >
+          {focusArea}
         </span>
       </div>
 
